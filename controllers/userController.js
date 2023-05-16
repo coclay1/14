@@ -17,6 +17,7 @@ module.exports = {
     },
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.id })
+            .populate('thoughts')
             .then(async (user) =>
                 !user
                     ? res.status(404).json({ message: 'No User Found!' })
@@ -55,8 +56,8 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     addFriend(req, res) {
-        Student.findOneAndUpdate(
-            { _id: req.params.studentId },
+        User.findOneAndUpdate(
+            { _id: req.params.id },
             { $addToSet: { friends: req.body } }
                 .then((user) =>
                     !user
@@ -66,8 +67,8 @@ module.exports = {
         );
     },
     removeFriend(req, res) {
-        Student.findOneAndUpdate(
-            { _id: req.params.studentId },
+        User.findOneAndUpdate(
+            { _id: req.params.id },
             { $pull: { friends: { ObjectId: req.params.id } } }
         )
             .then((user) =>
