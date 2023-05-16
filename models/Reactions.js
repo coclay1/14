@@ -28,4 +28,5 @@ const reactionSchema = new Schema(
       }
 )
 
-module.exports = Thought
+
+module.exports = reactionSchema
