@@ -23,11 +23,11 @@ module.exports = {
                     ? res.status(404).json({ message: 'No User Found!' })
                     : res.json({
                         user,
-                    })
+                    }))
                         .catch((err) => {
                             console.log(err);
                             return res.status(500).json(err)
-                        }));
+                        });
     },
     newUser(req, res) {
         User.create(req.body)
@@ -58,18 +58,18 @@ module.exports = {
     addFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.id },
-            { $addToSet: { friends: req.body } }
+            { $addToSet: { friends: req.body.id } })
                 .then((user) =>
                     !user
                         ? res.status(404).json({ message: 'No User Found' })
                         : res.json(user))
                 .catch((err) => res.status(500).json(err))
-        );
+        ;
     },
     removeFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.id },
-            { $pull: { friends: { ObjectId: req.params.id } } }
+            { $pull: { friends: req.params.id } }
         )
             .then((user) =>
                 !user
