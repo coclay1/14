@@ -23,7 +23,7 @@
   This app requires express, and mongoose.
 
   ## Usage
-  This app is used to demonstrate backend API for social media using mongooseDB as the database.
+  This app is used to demonstrate backend API for social media using mongooseDB as the database. Please download the [video demo](./Untitled_%20May%2017%2C%202023%202_58%20PM.webm) for a demonstrating
 
   ## Contributors
   [shields.io](https://shields.io/)
