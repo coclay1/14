@@ -12,6 +12,7 @@ const userSchema = new Schema(
             type: Schema.Types.String,
             required: true,
             unique: true,
+            match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
         },
         thoughts: [{
             type: Schema.Types.ObjectId,
